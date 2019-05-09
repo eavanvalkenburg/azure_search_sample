@@ -1,0 +1,77 @@
+{
+    "dataSourceName": "edvantwitter",
+    "skillsetName": "twitter-skillset",
+    "targetIndexName": "twitter-index",
+    "disabled": null,
+    "schedule": {
+        "interval": "P1D",
+        "startTime": "0001-01-01T00:00:00Z"
+    },
+    "parameters": {
+        "batchSize": null,
+        "maxFailedItems": 100,
+        "maxFailedItemsPerBatch": null,
+        "base64EncodeKeys": false,
+        "configuration": {
+            "dataToExtract": "contentAndMetadata",
+            "parsingMode": "json"
+        }
+    },
+    "fieldMappings": [
+        {
+            "sourceFieldName": "metadata_storage_path",
+            "targetFieldName": "metadata_storage_path",
+            "mappingFunction": {
+                "name": "base64Encode",
+                "parameters": null
+            }
+        },
+        {
+        "sourceFieldName" : "content",
+        "targetFieldName" : "content",
+        "mappingFunction": null
+        },
+        {
+        "sourceFieldName" : "content/text",
+        "targetFieldName" : "text",
+        "mappingFunction": null
+        }
+    ],
+    "outputFieldMappings": [
+    	{
+    		"sourceFieldName": "/document/text",
+    		"targetFieldName": "tweetText",
+    		"mappingFunction": null
+    	},
+        {
+            "sourceFieldName": "/document/people",
+            "targetFieldName": "people",
+            "mappingFunction": null
+        },
+        {
+            "sourceFieldName": "/document/organizations",
+            "targetFieldName": "organizations",
+            "mappingFunction": null
+        },
+        {
+            "sourceFieldName": "/document/locations",
+            "targetFieldName": "locations",
+            "mappingFunction": null
+        },
+        {
+            "sourceFieldName": "/document/keyphrases",
+            "targetFieldName": "keyphrases",
+            "mappingFunction": null
+        },
+        {
+            "sourceFieldName": "/document/language",
+            "targetFieldName": "language",
+            "mappingFunction": null
+        },
+        {
+            "sourceFieldName": "/document/languageName",
+            "targetFieldName": "languageName",
+            "mappingFunction": null
+        }
+    ]
+}

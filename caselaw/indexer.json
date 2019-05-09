@@ -1,0 +1,47 @@
+{
+    
+    "name": "caselaw-indexer",
+    "description": null,
+    "dataSourceName": "lawcases",
+    "skillsetName": "caselaw-skillset",
+    "targetIndexName": "caselaw-index",
+    "disabled": null,
+    "schedule": null,
+    "parameters": {
+        "batchSize": 1,
+        "maxFailedItems": null,
+        "maxFailedItemsPerBatch": null,
+        "base64EncodeKeys": null,
+        "configuration": {
+            "parsingMode": "jsonLines"
+        }
+    },
+    "fieldMappings": [],
+    "outputFieldMappings": [
+        {
+            "sourceFieldName": "/document/casebody/data/opinions/*/text/pages/*/people/*",
+            "targetFieldName": "people",
+            "mappingFunction": null
+        },
+        {
+            "sourceFieldName": "/document/casebody/data/opinions/*/text/pages/*/organizations/*",
+            "targetFieldName": "orginizations",
+            "mappingFunction": null
+        },
+        {
+            "sourceFieldName": "/document/casebody/data/opinions/*/text/pages/*/locations/*",
+            "targetFieldName": "locations",
+            "mappingFunction": null
+        },
+        {
+            "sourceFieldName": "/document/Case/OpinionsSnippets/*/Entities/*",
+            "targetFieldName": "entities",
+            "mappingFunction": null
+        },
+        {
+            "sourceFieldName": "/document/casebody/data/opinions/*/text/pages/*/keyPhrases/*",
+            "targetFieldName": "keyPhrases",
+            "mappingFunction": null
+        }
+    ]
+}

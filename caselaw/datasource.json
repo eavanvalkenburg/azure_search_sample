@@ -1,0 +1,15 @@
+{
+    "name": "caselaw-datasource",
+    "description": null,
+    "type": "azureblob",
+    "subtype": null,
+    "credentials": {
+        "connectionString": ""
+    },
+    "container": {
+        "name": "caselaw",
+        "query": null
+    },
+    "dataChangeDetectionPolicy": null,
+    "dataDeletionDetectionPolicy": null
+}

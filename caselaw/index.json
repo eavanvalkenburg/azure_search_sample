@@ -1,0 +1,510 @@
+{
+    "name": "caselaw-index",
+    "defaultScoringProfile": null,
+    "fields": [
+        {
+            "name": "id",
+            "type": "Edm.String",
+            "searchable": true,
+            "filterable": true,
+            "retrievable": true,
+            "sortable": true,
+            "facetable": true,
+            "key": true,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "analyzer": null,
+            "synonymMaps": []
+        },
+        {
+            "name": "name",
+            "type": "Edm.String",
+            "searchable": true,
+            "filterable": true,
+            "retrievable": true,
+            "sortable": true,
+            "facetable": true,
+            "key": false,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "analyzer": null,
+            "synonymMaps": []
+        },
+        {
+            "name": "name_abbreviation",
+            "type": "Edm.String",
+            "searchable": true,
+            "filterable": true,
+            "retrievable": true,
+            "sortable": true,
+            "facetable": true,
+            "key": false,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "analyzer": null,
+            "synonymMaps": []
+        },
+        {
+            "name": "decision_date",
+            "type": "Edm.DateTimeOffset",
+            "searchable": false,
+            "filterable": true,
+            "retrievable": true,
+            "sortable": true,
+            "facetable": true,
+            "key": false,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "analyzer": null,
+            "synonymMaps": []
+        },
+        {
+            "name": "docket_number",
+            "type": "Edm.String",
+            "searchable": true,
+            "filterable": true,
+            "retrievable": true,
+            "sortable": true,
+            "facetable": true,
+            "key": false,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "analyzer": null,
+            "synonymMaps": []
+        },
+        {
+            "name": "citations",
+            "type": "Collection(Edm.ComplexType)",
+            "fields": [
+                {
+                    "name": "type",
+                    "type": "Edm.String",
+                    "searchable": true,
+                    "filterable": true,
+                    "retrievable": true,
+                    "sortable": false,
+                    "facetable": true,
+                    "key": false,
+                    "indexAnalyzer": null,
+                    "searchAnalyzer": null,
+                    "analyzer": null,
+                    "synonymMaps": []
+                },
+                {
+                    "name": "cite",
+                    "type": "Edm.String",
+                    "searchable": true,
+                    "filterable": true,
+                    "retrievable": true,
+                    "sortable": false,
+                    "facetable": true,
+                    "key": false,
+                    "indexAnalyzer": null,
+                    "searchAnalyzer": null,
+                    "analyzer": null,
+                    "synonymMaps": []
+                }
+            ]
+        },
+        {
+            "name": "volume",
+            "type": "Edm.ComplexType",
+            "fields": [
+                {
+                    "name": "volume_number",
+                    "type": "Edm.String",
+                    "searchable": true,
+                    "filterable": true,
+                    "retrievable": true,
+                    "sortable": true,
+                    "facetable": true,
+                    "key": false,
+                    "indexAnalyzer": null,
+                    "searchAnalyzer": null,
+                    "analyzer": null,
+                    "synonymMaps": []
+                }
+            ]
+        },
+        {
+            "name": "reporter",
+            "type": "Edm.ComplexType",
+            "fields": [
+                {
+                    "name": "full_name",
+                    "type": "Edm.String",
+                    "searchable": true,
+                    "filterable": true,
+                    "retrievable": true,
+                    "sortable": true,
+                    "facetable": true,
+                    "key": false,
+                    "indexAnalyzer": null,
+                    "searchAnalyzer": null,
+                    "analyzer": null,
+                    "synonymMaps": []
+                }
+            ]
+        },
+        {
+            "name": "court",
+            "type": "Edm.ComplexType",
+            "fields": [
+                {
+                    "name": "id",
+                    "type": "Edm.String",
+                    "searchable": true,
+                    "filterable": true,
+                    "retrievable": true,
+                    "sortable": true,
+                    "facetable": true,
+                    "key": false,
+                    "indexAnalyzer": null,
+                    "searchAnalyzer": null,
+                    "analyzer": null,
+                    "synonymMaps": []
+                },
+                {
+                    "name": "name",
+                    "type": "Edm.String",
+                    "searchable": true,
+                    "filterable": true,
+                    "retrievable": true,
+                    "sortable": true,
+                    "facetable": true,
+                    "key": false,
+                    "indexAnalyzer": null,
+                    "searchAnalyzer": null,
+                    "analyzer": null,
+                    "synonymMaps": []
+                },
+                {
+                    "name": "name_long",
+                    "type": "Edm.String",
+                    "searchable": true,
+                    "filterable": true,
+                    "retrievable": true,
+                    "sortable": true,
+                    "facetable": true,
+                    "key": false,
+                    "indexAnalyzer": null,
+                    "searchAnalyzer": null,
+                    "analyzer": null,
+                    "synonymMaps": []
+                },
+                {
+                    "name": "whitelisted",
+                    "type": "Edm.Boolean",
+                    "searchable": false,
+                    "filterable": true,
+                    "retrievable": true,
+                    "sortable": true,
+                    "facetable": true,
+                    "key": false,
+                    "indexAnalyzer": null,
+                    "searchAnalyzer": null,
+                    "analyzer": null,
+                    "synonymMaps": []
+                },
+                {
+                    "name": "slug",
+                    "type": "Edm.String",
+                    "searchable": true,
+                    "filterable": true,
+                    "retrievable": true,
+                    "sortable": true,
+                    "facetable": true,
+                    "key": false,
+                    "indexAnalyzer": null,
+                    "searchAnalyzer": null,
+                    "analyzer": null,
+                    "synonymMaps": []
+                }
+            ]
+        },
+        {
+            "name": "jurisdiction",
+            "type": "Edm.ComplexType",
+            "fields": [
+                {
+                    "name": "id",
+                    "type": "Edm.String",
+                    "searchable": true,
+                    "filterable": true,
+                    "retrievable": true,
+                    "sortable": true,
+                    "facetable": true,
+                    "key": false,
+                    "indexAnalyzer": null,
+                    "searchAnalyzer": null,
+                    "analyzer": null,
+                    "synonymMaps": []
+                },
+                {
+                    "name": "name",
+                    "type": "Edm.String",
+                    "searchable": true,
+                    "filterable": true,
+                    "retrievable": true,
+                    "sortable": true,
+                    "facetable": true,
+                    "key": false,
+                    "indexAnalyzer": null,
+                    "searchAnalyzer": null,
+                    "analyzer": null,
+                    "synonymMaps": []
+                },
+                {
+                    "name": "name_long",
+                    "type": "Edm.String",
+                    "searchable": true,
+                    "filterable": true,
+                    "retrievable": true,
+                    "sortable": true,
+                    "facetable": true,
+                    "key": false,
+                    "indexAnalyzer": null,
+                    "searchAnalyzer": null,
+                    "analyzer": null,
+                    "synonymMaps": []
+                },
+                {
+                    "name": "whitelisted",
+                    "type": "Edm.Boolean",
+                    "searchable": false,
+                    "filterable": true,
+                    "retrievable": true,
+                    "sortable": true,
+                    "facetable": true,
+                    "key": false,
+                    "indexAnalyzer": null,
+                    "searchAnalyzer": null,
+                    "analyzer": null,
+                    "synonymMaps": []
+                },
+                {
+                    "name": "slug",
+                    "type": "Edm.String",
+                    "searchable": true,
+                    "filterable": true,
+                    "retrievable": true,
+                    "sortable": true,
+                    "facetable": true,
+                    "key": false,
+                    "indexAnalyzer": null,
+                    "searchAnalyzer": null,
+                    "analyzer": null,
+                    "synonymMaps": []
+                }
+            ]
+        },
+        {
+            "name": "casebody",
+            "type": "Edm.ComplexType",
+            "fields": [
+                {
+                    "name": "status",
+                    "type": "Edm.String",
+                    "searchable": true,
+                    "filterable": true,
+                    "retrievable": true,
+                    "sortable": true,
+                    "facetable": true,
+                    "key": false,
+                    "indexAnalyzer": null,
+                    "searchAnalyzer": null,
+                    "analyzer": null,
+                    "synonymMaps": []
+                },
+                {
+                    "name": "data",
+                    "type": "Edm.ComplexType",
+                    "fields": [
+                        {
+                            "name": "head_matter",
+                            "type": "Edm.String",
+                            "searchable": true,
+                            "filterable": false,
+                            "retrievable": true,
+                            "sortable": false,
+                            "facetable": false,
+                            "key": false,
+                            "indexAnalyzer": null,
+                            "searchAnalyzer": null,
+                            "analyzer": null,
+                            "synonymMaps": []
+                        },
+                        {
+                            "name": "opinions",
+                            "type": "Collection(Edm.ComplexType)",
+                            "fields": [
+                                {
+                                    "name": "author",
+                                    "type": "Edm.String",
+                                    "searchable": true,
+                                    "filterable": true,
+                                    "retrievable": true,
+                                    "sortable": false,
+                                    "facetable": true,
+                                    "key": false,
+                                    "indexAnalyzer": null,
+                                    "searchAnalyzer": null,
+                                    "analyzer": null,
+                                    "synonymMaps": []
+                                },
+                                {
+                                    "name": "text",
+                                    "type": "Edm.String",
+                                    "searchable": true,
+                                    "filterable": false,
+                                    "retrievable": true,
+                                    "sortable": false,
+                                    "facetable": false,
+                                    "key": false,
+                                    "indexAnalyzer": null,
+                                    "searchAnalyzer": null,
+                                    "analyzer": null,
+                                    "synonymMaps": []
+                                },
+                                {
+                                    "name": "type",
+                                    "type": "Edm.String",
+                                    "searchable": true,
+                                    "filterable": true,
+                                    "retrievable": true,
+                                    "sortable": false,
+                                    "facetable": true,
+                                    "key": false,
+                                    "indexAnalyzer": null,
+                                    "searchAnalyzer": null,
+                                    "analyzer": null,
+                                    "synonymMaps": []
+                                }
+                            ]
+                        },
+                        {
+                            "name": "attorneys",
+                            "type": "Collection(Edm.String)",
+                            "searchable": true,
+                            "filterable": true,
+                            "retrievable": true,
+                            "sortable": false,
+                            "facetable": true,
+                            "key": false,
+                            "indexAnalyzer": null,
+                            "searchAnalyzer": null,
+                            "analyzer": null,
+                            "synonymMaps": []
+                        },
+                        {
+                            "name": "parties",
+                            "type": "Collection(Edm.String)",
+                            "searchable": true,
+                            "filterable": true,
+                            "retrievable": true,
+                            "sortable": false,
+                            "facetable": true,
+                            "key": false,
+                            "indexAnalyzer": null,
+                            "searchAnalyzer": null,
+                            "analyzer": null,
+                            "synonymMaps": []
+                        },
+                        {
+                            "name": "judges",
+                            "type": "Collection(Edm.String)",
+                            "searchable": true,
+                            "filterable": true,
+                            "retrievable": true,
+                            "sortable": false,
+                            "facetable": true,
+                            "key": false,
+                            "indexAnalyzer": null,
+                            "searchAnalyzer": null,
+                            "analyzer": null,
+                            "synonymMaps": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "people",
+            "type": "Collection(Edm.String)",
+            "searchable": true,
+            "filterable": true,
+            "retrievable": true,
+            "sortable": false,
+            "facetable": true,
+            "key": false,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "analyzer": null,
+            "synonymMaps": []
+        },
+        {
+            "name": "orginizations",
+            "type": "Collection(Edm.String)",
+            "searchable": true,
+            "filterable": true,
+            "retrievable": true,
+            "sortable": false,
+            "facetable": true,
+            "key": false,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "analyzer": null,
+            "synonymMaps": []
+        },
+        {
+            "name": "locations",
+            "type": "Collection(Edm.String)",
+            "searchable": true,
+            "filterable": true,
+            "retrievable": true,
+            "sortable": false,
+            "facetable": true,
+            "key": false,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "analyzer": null,
+            "synonymMaps": []
+        },
+        {
+            "name": "entities",
+            "type": "Collection(Edm.String)",
+            "searchable": true,
+            "filterable": true,
+            "retrievable": true,
+            "sortable": false,
+            "facetable": true,
+            "key": false,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "analyzer": null,
+            "synonymMaps": []
+        },
+        {
+            "name": "keyPhrases",
+            "type": "Collection(Edm.String)",
+            "searchable": true,
+            "filterable": true,
+            "retrievable": true,
+            "sortable": false,
+            "facetable": true,
+            "key": false,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "analyzer": null,
+            "synonymMaps": []
+        }
+    ],
+    "scoringProfiles": [],
+    "corsOptions": null,
+    "suggesters": [],
+    "analyzers": [],
+    "tokenizers": [],
+    "tokenFilters": [],
+    "charFilters": [],
+    "encryptionKey": null
+}

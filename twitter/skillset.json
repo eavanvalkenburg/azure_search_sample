@@ -1,0 +1,99 @@
+{
+    "name": "twitter-skillset",
+    "description": "basic skillset",
+    "skills": [
+        {
+            "@odata.type": "#Microsoft.Skills.Text.LanguageDetectionSkill",
+            "name": "LanguageSkill",
+            "description": null,
+            "context": "/document",
+            "inputs": [
+                {
+                    "name": "text",
+                    "source": "/document/text"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "languageCode",
+                    "targetName": "language"
+                },
+                {
+                    "name": "languageName",
+                    "targetName": "languageName"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Text.EntityRecognitionSkill",
+            "name": "EntitySkill",
+            "description": null,
+            "context": "/document",
+            "categories": [
+                "Person",
+                "Quantity",
+                "Organization",
+                "URL",
+                "Email",
+                "Location",
+                "DateTime"
+            ],
+            "defaultLanguageCode": "en",
+            "minimumPrecision": null,
+            "includeTypelessEntities": null,
+            "inputs": [
+                {
+                    "name": "text",
+                    "source": "/document/text"
+                },
+                {
+                    "name": "languageCode",
+                    "source": "/document/language"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "persons",
+                    "targetName": "people"
+                },
+                {
+                    "name": "organizations",
+                    "targetName": "organizations"
+                },
+                {
+                    "name": "locations",
+                    "targetName": "locations"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Text.KeyPhraseExtractionSkill",
+            "name": "KeyPhraseSkill",
+            "description": null,
+            "context": "/document",
+            "defaultLanguageCode": "en",
+            "maxKeyPhraseCount": null,
+            "inputs": [
+                {
+                    "name": "text",
+                    "source": "/document/text"
+                },
+                {
+                    "name": "languageCode",
+                    "source": "/document/language"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "keyPhrases",
+                    "targetName": "keyphrases"
+                }
+            ]
+        }
+    ],
+    "cognitiveServices": {
+        "@odata.type": "#Microsoft.Azure.Search.CognitiveServicesByKey",
+        "description": "/subscriptions/8f962503-0c00-4280-a157-8c20b3a9d990/resourceGroups/search/providers/Microsoft.CognitiveServices/accounts/edvancognitivesearch",
+        "key": ""
+    }
+}

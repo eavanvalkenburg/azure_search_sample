@@ -1,0 +1,15 @@
+{
+    "name": "",
+    "description": null,
+    "type": "azureblob",
+    "subtype": null,
+    "credentials": {
+        "connectionString": ""
+    },
+    "container": {
+        "name": "edvantwitterdata",
+        "query": null
+    },
+    "dataChangeDetectionPolicy": null,
+    "dataDeletionDetectionPolicy": null
+}
