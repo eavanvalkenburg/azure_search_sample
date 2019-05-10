@@ -1,10 +1,10 @@
 {
-    "name": "caselaw-skillset",
+    "name": "caselaw-ss",
     "description": null,
     "skills": [
         {
             "@odata.type": "#Microsoft.Skills.Text.SplitSkill",
-            "name": "#1",
+            "name": "SplitSkill#1",
             "description": null,
             "context": "/document/casebody/data/opinions/*/text",
             "defaultLanguageCode": "en",
@@ -13,9 +13,7 @@
             "inputs": [
                 {
                     "name": "text",
-                    "source": "/document/casebody/data/opinions/*/text",
-                    "sourceContext": null,
-                    "inputs": []
+                    "source": "/document/casebody/data/opinions/*/text"
                 }
             ],
             "outputs": [
@@ -27,7 +25,7 @@
         },
         {
             "@odata.type": "#Microsoft.Skills.Text.EntityRecognitionSkill",
-            "name": "#2",
+            "name": "EntityRecognition#2",
             "description": null,
             "context": "/document/casebody/data/opinions/*/text/pages/*",
             "categories": [
@@ -41,9 +39,7 @@
             "inputs": [
                 {
                     "name": "text",
-                    "source": "/document/casebody/data/opinions/*/text/pages/*",
-                    "sourceContext": null,
-                    "inputs": []
+                    "source": "/document/casebody/data/opinions/*/text/pages/*"
                 }
             ],
             "outputs": [
@@ -67,7 +63,7 @@
         },
         {
             "@odata.type": "#Microsoft.Skills.Text.KeyPhraseExtractionSkill",
-            "name": "#3",
+            "name": "KeyPhrases#3",
             "description": null,
             "context": "/document/casebody/data/opinions/*/text/pages/*",
             "defaultLanguageCode": "en",
@@ -75,9 +71,7 @@
             "inputs": [
                 {
                     "name": "text",
-                    "source": "/document/casebody/data/opinions/*/text/pages/*",
-                    "sourceContext": null,
-                    "inputs": []
+                    "source": "/document/casebody/data/opinions/*/text/pages/*"
                 }
             ],
             "outputs": [
@@ -89,21 +83,59 @@
         },
         {
             "@odata.type": "#Microsoft.Skills.Util.ShaperSkill",
-            "name": "#4",
+            "name": "Shaper#4-Case For Table Projections",
             "description": null,
             "context": "/document",
             "inputs": [
                 {
                     "name": "Id",
-                    "source": "/document/id",
-                    "sourceContext": null,
-                    "inputs": []
+                    "source": "/document/id"
                 },
                 {
                     "name": "Name",
-                    "source": "/document/name",
-                    "sourceContext": null,
-                    "inputs": []
+                    "source": "/document/name"
+                },
+                {
+                    "name": "Decision_Date",
+                    "source": "/document/decision_date"
+                },
+                {
+                    "name": "Court",
+                    "source": "/document/court/name"
+                },
+                {
+                    "name": "HeadMatter",
+                    "source": "/document/casebody/data/head_matter"
+                },
+                {
+                    "name": "Attorneys",
+                    "sourceContext": "/document/casebody/data/attorneys/*",
+                    "inputs": [
+                        {
+                            "name": "Attorney",
+                            "source": "/document/casebody/data/attorneys/*"
+                        }
+                    ]
+                },
+                {
+                    "name": "Parties",
+                    "sourceContext": "/document/casebody/data/parties/*",
+                    "inputs": [
+                        {
+                            "name": "Party",
+                            "source": "/document/casebody/data/parties/*"
+                        }
+                    ]
+                },
+                {
+                    "name": "Judges",
+                    "sourceContext": "/document/casebody/data/judges/*",
+                    "inputs": [
+                        {
+                            "name": "Judge",
+                            "source": "/document/casebody/data/judges/*"
+                        }
+                    ]
                 },
                 {
                     "name": "OpinionsSnippets",
@@ -112,15 +144,11 @@
                     "inputs": [
                         {
                             "name": "Text",
-                            "source": "/document/casebody/data/opinions/*/text/pages/0",
-                            "sourceContext": null,
-                            "inputs": []
+                            "source": "/document/casebody/data/opinions/*/text/pages/0"
                         },
                         {
                             "name": "Author",
-                            "source": "/document/casebody/data/opinions/*/author",
-                            "sourceContext": null,
-                            "inputs": []
+                            "source": "/document/casebody/data/opinions/*/author"
                         },
                         {
                             "name": "Entities",
@@ -129,15 +157,11 @@
                             "inputs": [
                                 {
                                     "name": "Entity",
-                                    "source": "/document/casebody/data/opinions/*/text/pages/*/entities/*/value",
-                                    "sourceContext": null,
-                                    "inputs": []
+                                    "source": "/document/casebody/data/opinions/*/text/pages/*/entities/*/value"
                                 },
                                 {
                                     "name": "EntityType",
-                                    "source": "/document/casebody/data/opinions/*/text/pages/*/entities/*/category",
-                                    "sourceContext": null,
-                                    "inputs": []
+                                    "source": "/document/casebody/data/opinions/*/text/pages/*/entities/*/category"
                                 }
                             ]
                         }
@@ -153,21 +177,41 @@
         },
         {
             "@odata.type": "#Microsoft.Skills.Util.ShaperSkill",
-            "name": "#5",
+            "name": "Shaper#5-CaseFull",
             "description": null,
             "context": "/document",
             "inputs": [
                 {
                     "name": "Id",
-                    "source": "/document/id",
-                    "sourceContext": null,
-                    "inputs": []
+                    "source": "/document/id"
                 },
                 {
                     "name": "Name",
-                    "source": "/document/name",
-                    "sourceContext": null,
-                    "inputs": []
+                    "source": "/document/name"
+                },
+                {
+                    "name": "Decision_Date",
+                    "source": "/document/decision_date"
+                },
+                {
+                    "name": "Court",
+                    "source": "/document/court/name"
+                },
+                {
+                    "name": "HeadMatter",
+                    "source": "/document/casebody/data/head_matter"
+                },
+                {
+                    "name": "Attorneys",
+                    "source": "/document/casebody/data/attorneys"
+                },
+                {
+                    "name": "Parties",
+                    "source": "/document/casebody/data/parties"
+                },
+                {
+                    "name": "Judges",
+                    "source": "/document/casebody/data/judges"
                 },
                 {
                     "name": "Opinions",
@@ -176,15 +220,11 @@
                     "inputs": [
                         {
                             "name": "Text",
-                            "source": "/document/casebody/data/opinions/*/text",
-                            "sourceContext": null,
-                            "inputs": []
+                            "source": "/document/casebody/data/opinions/*/text"
                         },
                         {
                             "name": "Author",
-                            "source": "/document/casebody/data/opinions/*/author",
-                            "sourceContext": null,
-                            "inputs": []
+                            "source": "/document/casebody/data/opinions/*/author"
                         },
                         {
                             "name": "Entities",
@@ -193,15 +233,11 @@
                             "inputs": [
                                 {
                                     "name": "Entity",
-                                    "source": "/document/casebody/data/opinions/*/text/pages/*/entities/*/value",
-                                    "sourceContext": null,
-                                    "inputs": []
+                                    "source": "/document/casebody/data/opinions/*/text/pages/*/entities/*/value"
                                 },
                                 {
                                     "name": "EntityType",
-                                    "source": "/document/casebody/data/opinions/*/text/pages/*/entities/*/category",
-                                    "sourceContext": null,
-                                    "inputs": []
+                                    "source": "/document/casebody/data/opinions/*/text/pages/*/entities/*/category"
                                 }
                             ]
                         }
@@ -218,7 +254,7 @@
     ],
     "cognitiveServices": {
         "@odata.type": "#Microsoft.Azure.Search.CognitiveServicesByKey",
-        "description": "mycogsvcs",
+        "description": "edvancognitiveservices",
         "key": ""
     },
     "knowledgeStore": {
@@ -240,13 +276,31 @@
                         "tableName": "Entities",
                         "generatedKeyName": "EntityId",
                         "source": "/document/Case/OpinionsSnippets/*/Entities/*"
+                    },
+                    {
+                        "tableName": "Attorneys",
+                        "generatedKeyName": "AttorneyId",
+                        "source": "/document/Case/Attorneys/*"
+                    },
+                    {
+                        "tableName": "Judges",
+                        "generatedKeyName": "JudgeId",
+                        "source": "/document/Case/Judges/*"
+                    },
+                    {
+                        "tableName": "Parties",
+                        "generatedKeyName": "PartyId",
+                        "source": "/document/Case/Parties/*"
                     }
-                ]
+                ],
+                "objects": []
             },
             {
+                "tables": [],
                 "objects": [
                     {
                         "storageContainer": "enrichedcases",
+                        
                         "source": "/document/CaseFull"
                     }
                 ]

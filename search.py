@@ -2,24 +2,28 @@
 import requests
 import json
 import time
+# import msrest
 
 class search:
     def __init__(self, project_name, config_file_name='config', debug=False):
         self.project_name = project_name
         self.debug = debug
-
-        with open(f'{self.project_name}/{config_file_name}.json', 'r') as file:
-            config = json.load(file)        
+        config = self._file_reader(f'{self.project_name}/{config_file_name}.json')
+        # self.client = msrest.ServiceClient(msrest.Configuration(base_url=f"https://{config['search_service_name']}.search.windows.net/"))
+        # with open(f'{self.project_name}/{config_file_name}.json', 'r') as file:
+        #     config = json.load(file)        
         self.base_url = f"https://{config['search_service_name']}.search.windows.net/"
         self.api_key = config["search_api_key"]
+        # self.client.add_header('api-key', config["search_api_key"])
         self.cogn_svc_key = config["cogn_svc_key"]
         self.storage_conn_string = config["storage_conn_string"]
 
     #create datasource
     def create_datasource(self, api_version, name='datasource'):
         fullname = f'{self.project_name}-{name}'
-        with open(f'{self.project_name}/{name}.json', 'r') as file:
-            body = json.load(file)
+        body = self._file_reader(f'{self.project_name}/{name}.json')
+        # with open(f'{self.project_name}/{name}.json', 'r') as file:
+        #     body = json.load(file)
         body['credentials']['connectionString'] = self.storage_conn_string
         body['name'] = fullname
         if self.debug:
@@ -27,6 +31,7 @@ class search:
         payload = {"api-version": api_version}
         headers = {"api-key": self.api_key, "Content-Type": "application/json"}
         url = self.base_url + f"datasources/{fullname}"
+        # msrest.
         req = requests.put(url, headers=headers, json=body, params=payload)
         if self.debug:
             print(req.text)
@@ -81,7 +86,7 @@ class search:
         payload = {"api-version": api_version}
         headers = {"api-key": self.api_key, "Content-Type": "application/json"}
         url = self.base_url + f"indexers/{self.project_name}-{name}"
-        req = requests.put(url, headers=headers, json=body, params=payload, timeout=30)
+        req = requests.put(url, headers=headers, json=body, params=payload, timeout=60)
         if self.debug:
             print(req.text)
         req.raise_for_status()
@@ -125,6 +130,11 @@ class search:
         query.raise_for_status()
         return query.json()
 
+    def _file_reader(self, filename) -> dict:
+        with open(filename, 'r') as file:
+            return json.load(file)
+        
+
 #%%
 project_folder = 'caselaw'
 search_client = search(project_folder, debug = True)
@@ -139,7 +149,7 @@ search_client.create_index(api_version)
 #%%
 search_client.create_skillset(api_version)
 #%%
-search_client.create_indexer(api_version_not_preview)
+search_client.create_indexer(api_version)
 #%%
 search_client.reset_run(api_version, reset=True, run=True, wait=True)
 #%%
