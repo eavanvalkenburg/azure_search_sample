@@ -86,7 +86,7 @@ class search:
         payload = {"api-version": api_version}
         headers = {"api-key": self.api_key, "Content-Type": "application/json"}
         url = self.base_url + f"indexers/{self.project_name}-{name}"
-        req = requests.put(url, headers=headers, json=body, params=payload, timeout=60)
+        req = requests.put(url, headers=headers, json=body, params=payload, timeout=600)
         if self.debug:
             print(req.text)
         req.raise_for_status()
