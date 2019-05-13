@@ -4,7 +4,7 @@ import time
 
 
 class AzureSearchConfig:
-    """Contains the config of a AzureSearch class."""
+    """Contains the config of a AzureSearchClient class."""
 
     def __init__(
             self,
@@ -18,7 +18,7 @@ class AzureSearchConfig:
             skillset,
             indexer,
             **kwargs):
-        """Create a AzureSearch config."""
+        """Create a AzureSearchClient config."""
         self.search_service_name = search_service_name
         self.search_api_key = search_api_key
         self.search_api_version = search_api_version
@@ -39,11 +39,11 @@ class AzureSearchConfig:
         return f"https://{self.search_service_name}.{self._domain}"
 
 
-class AzureSearch:
-    """Creates an instance of AzureSearch."""
+class AzureSearchClient:
+    """Creates an instance of AzureSearchClient."""
 
     def __init__(self, config: AzureSearchConfig, debug=False):
-        """Create an instance of AzureSearch."""
+        """Create an instance of AzureSearchClient."""
         self.config = config
         self.debug = debug
         self.base_payload = {"api-version": self.config.search_api_version}

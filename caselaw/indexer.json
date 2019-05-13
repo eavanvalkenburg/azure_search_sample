@@ -25,7 +25,7 @@
         },
         {
             "sourceFieldName": "/document/casebody/data/opinions/*/text/pages/*/organizations/*",
-            "targetFieldName": "orginizations",
+            "targetFieldName": "organizations",
             "mappingFunction": null
         },
         {
