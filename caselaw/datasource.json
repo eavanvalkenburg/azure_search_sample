@@ -7,7 +7,7 @@
         "connectionString": ""
     },
     "container": {
-        "name": "caselaw",
+        "name": "caselaw-small",
         "query": null
     },
     "dataChangeDetectionPolicy": null,
