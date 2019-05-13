@@ -1,6 +1,11 @@
 {
     "search_service_name": "",
     "search_api_key": "",
-    "cogn_svc_key": "",
-    "storage_conn_string": ""
+    "search_api_version": "2019-05-06-Preview",
+    "cognitive_services_key": "",
+    "storage_connection_string": "",
+    "datasource": "caselaw-datasource",
+    "index": "caselaw-index",
+    "skillset": "caselaw-skillset",
+    "indexer": "caselaw-indexer"
 }

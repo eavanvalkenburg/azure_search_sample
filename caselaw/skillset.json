@@ -256,5 +256,55 @@
         "@odata.type": "#Microsoft.Azure.Search.CognitiveServicesByKey",
         "description": "edvancognitiveservices",
         "key": ""
+    },
+    "knowledgeStore": {
+        "storageConnectionString": "",
+        "projections": [
+            {
+                "tables": [
+                    {
+                        "tableName": "Cases",
+                        "generatedKeyName": "CaseId",
+                        "source": "/document/Case"
+                    },
+                    {
+                        "tableName": "Opinions",
+                        "generatedKeyName": "OpinionId",
+                        "source": "/document/Case/OpinionsSnippets/*"
+                    },
+                    {
+                        "tableName": "Entities",
+                        "generatedKeyName": "EntityId",
+                        "source": "/document/Case/OpinionsSnippets/*/Entities/*"
+                    },
+                    {
+                        "tableName": "Attorneys",
+                        "generatedKeyName": "AttorneyId",
+                        "source": "/document/Case/Attorneys/*"
+                    },
+                    {
+                        "tableName": "Judges",
+                        "generatedKeyName": "JudgeId",
+                        "source": "/document/Case/Judges/*"
+                    },
+                    {
+                        "tableName": "Parties",
+                        "generatedKeyName": "PartyId",
+                        "source": "/document/Case/Parties/*"
+                    }
+                ],
+                "objects": []
+            },
+            {
+                "tables": [],
+                "objects": [
+                    {
+                        "storageContainer": "enrichedcases",
+                        
+                        "source": "/document/CaseFull"
+                    }
+                ]
+            }
+        ]
     }
 }

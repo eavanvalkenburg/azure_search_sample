@@ -1,30 +1,31 @@
 #%%
 import json
-from azure_search import AzureSearch  
+from azure_search import AzureSearch, AzureSearchConfig
 
 def file_reader(filename) -> dict:
     with open(filename, 'r') as file:
         return json.load(file)
 
+config = file_reader('caselaw/search_config.json')
+files = file_reader('caselaw/files.json')
+search_client = AzureSearch(AzureSearchConfig(**config))
 
 #%%
-config = file_reader('caselaw/config.json')
-search_client = AzureSearch(config, debug = True)
-api_version = "2019-05-06-Preview"
+datasource = file_reader(files['datasource_file'])
+search_client.create_datasource(datasource)
+#%%
+index = file_reader(files['index_file'])
+search_client.create_index(index)
+#%%
+skillset = file_reader(files['skillset_file'])
+search_client.create_skillset(skillset)
+#%%
+indexer = file_reader(files['indexer_file'])
+search_client.create_indexer(indexer)
+#%%
+search_client.reset_run(reset=True, run=True, wait=True)
+#%%
+search_client.query("murder")
 
 #%%
-datasource = file_reader(config['datasource_file'])
-search_client.create_datasource(datasource, api_version)
-#%%
-index = file_reader(config['index_file'])
-search_client.create_index(index, api_version)
-#%%
-skillset = file_reader(config['skillset_file'])
-search_client.create_skillset(skillset, api_version)
-#%%
-indexer = file_reader(config['indexer_file'])
-search_client.create_indexer(indexer, api_version)
-#%%
-search_client.reset_run(api_version, reset=True, run=True, wait=False)
-#%%
-search_client.query("entity: mother", api_version)
+search_client.query("entity: CF & I Fabricators of Utah, Inc")

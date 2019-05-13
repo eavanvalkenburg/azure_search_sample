@@ -1,0 +1,6 @@
+{
+    "datasource_file": "caselaw/datasource.json",
+    "index_file": "caselaw/index.json",
+    "skillset_file": "caselaw/skillset.json",
+    "indexer_file": "caselaw/indexer.json"
+}
