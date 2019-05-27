@@ -71,7 +71,6 @@ class AzureSearchClient:
     def create_index(self, body, **kwargs):
         """Create a index in the search service."""
         body['name'] = self.config.index
-
         # try delete
         url = self.config.base_url + f"indexes/{self.config.index}"
         delete = requests.delete(
@@ -82,9 +81,9 @@ class AzureSearchClient:
         req = requests.put(
             url, headers=self.base_headers,
             json=body, params=self.base_payload, **kwargs)
-        req.raise_for_status()
         if self.debug:
             print(req.text)
+        req.raise_for_status()
 
     def create_skillset(self, body, **kwargs):
         """Create a skillset in the search service."""

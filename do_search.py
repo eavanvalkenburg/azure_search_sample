@@ -6,10 +6,10 @@ def file_reader(filename) -> dict:
     with open(filename, 'r') as file:
         return json.load(file)
 
-files = file_reader('caselaw/files.json')
+files = file_reader('bootcamp/files.json')
 search_client = AzureSearchClient(
         AzureSearchConfig(
-                **file_reader('caselaw/search_config.json')))
+                **file_reader('bootcamp/search_config.json')))
 
 #%%
 datasource = file_reader(files['datasource_file'])
@@ -31,7 +31,7 @@ search_client.create_indexer(indexer)
 search_client.reset_run(reset=True, run=True, wait=True)
 
 #%%
-search_client.query("murder")
+search_client.query("satya")
 
 #%%
-search_client.query("entity: CF & I Fabricators of Utah, Inc")
+search_client.query("microsoft&&searchFields=organizations")

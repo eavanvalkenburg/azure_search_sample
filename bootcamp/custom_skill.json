@@ -1,0 +1,20 @@
+,
+      {
+          "@odata.type": "#Microsoft.Skills.Custom.WebApiSkill",
+          "description": "Our new moderator custom skill",
+          "uri": "https://[your-function-urll].azurewebsites.net/api/ContentModerator?code=[your-content-moderator-api-key]",
+          "batchSize":1,
+          "context": "/document",
+          "inputs": [
+            {
+              "name": "text",
+              "source": "/document/mergedText"
+            }
+          ],
+          "outputs": [
+            {
+              "name": "text",
+              "targetName": "needsModeration"
+            }
+          ]
+      }

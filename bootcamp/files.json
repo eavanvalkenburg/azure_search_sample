@@ -1,0 +1,6 @@
+{
+    "datasource_file": "bootcamp/datasource.json",
+    "index_file": "bootcamp/index.json",
+    "skillset_file": "bootcamp/skillset.json",
+    "indexer_file": "bootcamp/indexer.json"
+}

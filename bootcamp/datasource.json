@@ -1,0 +1,15 @@
+{
+    "name": "bootcamp-datasource",
+    "description": null,
+    "type": "azureblob",
+    "subtype": null,
+    "credentials": {
+        "connectionString": ""
+    },
+    "container": {
+        "name": "bootcamp",
+        "query": null
+    },
+    "dataChangeDetectionPolicy": null,
+    "dataDeletionDetectionPolicy": null
+}

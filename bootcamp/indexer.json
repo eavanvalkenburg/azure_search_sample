@@ -1,0 +1,64 @@
+{
+    "dataSourceName": "demodata",
+    "targetIndexName": "demoindex",
+    "skillsetName": "demoskillset",
+    "fieldMappings": [
+        {
+            "sourceFieldName": "metadata_storage_path",
+            "targetFieldName": "id",
+            "mappingFunction": {
+                "name": "base64Encode"
+            }
+        },
+        {
+            "sourceFieldName": "content",
+            "targetFieldName": "content"
+        },
+        {
+            "sourceFieldName": "metadata_storage_path",
+            "targetFieldName": "blob_uri"
+        }
+    ],
+    "outputFieldMappings": [
+        {
+            "sourceFieldName": "/document/pages/*/organizations/*",
+            "targetFieldName": "organizations"
+        },
+        {
+            "sourceFieldName": "/document/pages/*/keyPhrases/*",
+            "targetFieldName": "keyPhrases"
+        },
+        {
+            "sourceFieldName": "/document/languageCode",
+            "targetFieldName": "languageCode"
+        },
+        {
+            "sourceFieldName": "/document/normalized_images/*/myOcrText",
+            "targetFieldName": "myOcrText"
+        },
+        {
+            "sourceFieldName": "/document/normalized_images/*/myTags",
+            "targetFieldName": "myTags"
+        },
+        {
+            "sourceFieldName": "/document/normalized_images/*/myDescription",
+            "targetFieldName": "myDescription"
+        },
+        {
+            "sourceFieldName": "/document/normalized_images/*/myCategories",
+            "targetFieldName": "myCategories"
+        },
+        {
+            "sourceFieldName": "/document/needsModeration",
+            "targetFieldName": "needsModeration"
+        }
+    ],
+    "parameters": {
+        "maxFailedItems": 1000,
+        "maxFailedItemsPerBatch": 1000,
+        "configuration": {
+            "dataToExtract": "contentAndMetadata",
+            "imageAction": "generateNormalizedImages"
+        }
+    }
+}
