@@ -37,16 +37,20 @@
             "targetFieldName": "myOcrText"
         },
         {
-            "sourceFieldName": "/document/normalized_images/*/myTags",
-            "targetFieldName": "myTags"
+            "sourceFieldName": "/document/normalized_images/*/categories/*",
+            "targetFieldName": "categories"
         },
         {
-            "sourceFieldName": "/document/normalized_images/*/myDescription",
-            "targetFieldName": "myDescription"
+            "sourceFieldName": "/document/normalized_images/*/tags/*",
+            "targetFieldName": "tags"
         },
         {
-            "sourceFieldName": "/document/normalized_images/*/myCategories",
-            "targetFieldName": "myCategories"
+            "sourceFieldName": "/document/normalized_images/*/description",
+            "targetFieldName": "description"
+        },
+        {
+            "sourceFieldName": "/document/normalized_images/*/faces/*",
+            "targetFieldName": "faces"
         },
         {
             "sourceFieldName": "/document/needsModeration",

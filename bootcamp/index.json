@@ -1,219 +1,47 @@
-{
-    "fields": [
-        {
-            "name": "id",
-            "type": "Edm.String",
-            "key": true,
-            "searchable": true,
-            "filterable": false,
-            "facetable": false,
-            "sortable": true
-        },
-        {
-            "name": "blob_uri",
-            "type": "Edm.String",
-            "searchable": true,
-            "filterable": false,
-            "facetable": false,
-            "sortable": true
-        },
-        {
-            "name": "content",
-            "type": "Edm.String",
-            "sortable": false,
-            "searchable": true,
-            "filterable": false,
-            "facetable": false
-        },
-        {
-            "name": "languageCode",
-            "type": "Edm.String",
-            "searchable": true,
-            "filterable": false,
-            "facetable": false
-        },
-        {
-            "name": "keyPhrases",
-            "type": "Collection(Edm.String)",
-            "searchable": true,
-            "filterable": false,
-            "facetable": false
-        },
-        {
-            "name": "organizations",
-            "type": "Collection(Edm.String)",
-            "searchable": true,
-            "sortable": false,
-            "filterable": false,
-            "facetable": false
-        },
-        {
-            "name": "myOcrText",
-            "type": "Collection(Edm.String)",
-            "searchable": true,
-            "filterable": false,
-            "facetable": false
-        },
-        {
-            "name": "myCategories",
-            "type": "Collection(Edm.ComplexType)",
-            "fields": [
-                {
-                    "name": "name",
-                    "type": "Edm.String",
-                    "searchable": true,
-                    "filterable": false,
-                    "facetable": false
-                },
-                {
-                    "name": "score",
-                    "type": "Edm.Double",
-                    "searchable": false,
-                    "filterable": false,
-                    "facetable": false
-                },
-                {
-                    "name": "detail",
-                    "type": "Edm.ComplexType",
-                    "fields": [
-                        {
-                            "name": "celebrities",
-                            "type": "Collection(Edm.ComplexType)",
-                            "fields": [
-                                {
-                                    "name": "name",
-                                    "type": "Edm.String",
-                                    "searchable": true,
-                                    "filterable": false,
-                                    "facetable": false
-                                },
-                                {
-                                    "name": "faceBoundingBox",
-                                    "type": "Edm.ComplexType",
-                                    "fields": [
-                                        {
-                                            "name": "left",
-                                            "type": "Edm.Int32",
-                                            "searchable": false,
-                                            "filterable": false,
-                                            "facetable": false
-                                        },
-                                        {
-                                            "name": "top",
-                                            "type": "Edm.Int32",
-                                            "searchable": false,
-                                            "filterable": false,
-                                            "facetable": false
-                                        },
-                                        {
-                                            "name": "width",
-                                            "type": "Edm.Int32",
-                                            "searchable": false,
-                                            "filterable": false,
-                                            "facetable": false
-                                        },
-                                        {
-                                            "name": "heigth",
-                                            "type": "Edm.Int32",
-                                            "searchable": false,
-                                            "filterable": false,
-                                            "facetable": false
-                                        }
-                                    ]
-                                },
-                                {
-                                    "name": "confidence",
-                                    "type": "Edm.Double",
-                                    "searchable": false,
-                                    "filterable": false,
-                                    "facetable": false
-                                }
-                            ]
-                        },
-                        {
-                            "name": "landmarks",
-                            "type": "Collection(Edm.ComplexType)",
-                            "fields": [
-                                {
-                                    "name": "name",
-                                    "type": "Edm.String",
-                                    "searchable": true,
-                                    "filterable": false,
-                                    "facetable": false
-                                },
-                                {
-                                    "name": "confidence",
-                                    "type": "Edm.Double",
-                                    "searchable": false,
-                                    "filterable": false,
-                                    "facetable": false
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "myDescription",
-            "type": "Collection(Edm.ComplexType)",
-            "fields": [
-                {
-                    "name": "tags",
-                    "type": "Collection(Edm.String)",
-                    "searchable": true,
-                    "filterable": false,
-                    "facetable": false
-                },
-                {
-                    "name": "captions",
-                    "type": "Collection(Edm.ComplexType)",
-                    "fields": [
-                        {
-                            "name": "text",
-                            "type": "Edm.String",
-                            "searchable": true,
-                            "filterable": false,
-                            "facetable": false
-                        },
-                        {
-                            "name": "confidence",
-                            "type": "Edm.Double",
-                            "searchable": false,
-                            "filterable": false,
-                            "facetable": false
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "myTags",
-            "type": "Collection(Edm.ComplexType)",
-            "fields": [
-                {
-                    "name": "name",
-                    "type": "Edm.String",
-                    "searchable": true,
-                    "filterable": false,
-                    "facetable": false
-                },
-                {
-                    "name": "confidence",
-                    "type": "Edm.Double",
-                    "searchable": false,
-                    "filterable": false,
-                    "facetable": false
-                }
-            ]
-        },
-        {
-            "name": "needsModeration",
-            "type": "Edm.Boolean",
-            "searchable": false,
-            "sortable": false,
-            "filterable": true,
-            "facetable": false
-        }
-    ]
-}
+{"fields":[
+    {"name":"id","type":"Edm.String","key":true,"searchable":true,"filterable":false,"facetable":false,"sortable":true},
+    {"name":"blob_uri","type":"Edm.String","searchable":true,"filterable":false,"facetable":false,"sortable":true},
+    {"name":"content","type":"Edm.String","sortable":false,"searchable":true,"filterable":false,"facetable":false},
+    {"name":"languageCode","type":"Edm.String","searchable":true,"filterable":false,"facetable":false},
+    {"name":"keyPhrases","type":"Collection(Edm.String)","searchable":true,"filterable":false,"facetable":false},
+    {"name":"organizations","type":"Collection(Edm.String)","searchable":true,"sortable":false,"filterable":false,"facetable":false},
+    {"name":"myOcrText","type":"Collection(Edm.String)","searchable":true,"filterable":false,"facetable":false},
+    {"name":"categories","type":"Collection(Edm.ComplexType)","fields":[
+        {"name":"name","type":"Edm.String","searchable":true,"filterable":false,"facetable":false},
+        {"name":"score","type":"Edm.Double","searchable":false,"filterable":false,"facetable":false},
+        {"name":"detail","type":"Edm.ComplexType","fields":[
+            {"name":"celebrities","type":"Collection(Edm.ComplexType)","fields":[
+                {"name":"name","type":"Edm.String","searchable":true,"filterable":false,"facetable":false},
+                {"name":"faceBoundingBox","type":"Collection(Edm.ComplexType)","fields":[
+                    {"name":"x","type":"Edm.Int32","searchable":false,"filterable":false,"facetable":false},
+                    {"name":"y","type":"Edm.Int32","searchable":false,"filterable":false,"facetable":false}
+                ]},
+                {"name":"confidence","type":"Edm.Double","searchable":false,"filterable":false,"facetable":false}
+            ]},
+            {"name":"landmarks","type":"Collection(Edm.ComplexType)","fields":[
+                {"name":"name","type":"Edm.String","searchable":true,"filterable":false,"facetable":false},
+                {"name":"confidence","type":"Edm.Double","searchable":false,"filterable":false,"facetable":false}
+            ]}
+        ]}
+    ]},
+    {"name":"description","type":"Collection(Edm.ComplexType)","fields":[
+        {"name":"tags","type":"Collection(Edm.String)","searchable":true,"filterable":false,"facetable":false},
+        {"name":"captions","type":"Collection(Edm.ComplexType)","fields":[
+            {"name":"text","type":"Edm.String","searchable":true,"filterable":false,"facetable":false},
+            {"name":"confidence","type":"Edm.Double","searchable":false,"filterable":false,"facetable":false}
+        ]}
+    ]},
+    {"name":"faces","type":"Collection(Edm.ComplexType)","fields":[
+        {"name":"age","type":"Edm.Int32","searchable":false,"filterable":false,"facetable":false},
+        {"name":"gender","type":"Edm.String","searchable":false,"filterable":false,"facetable":false},
+        {"name":"faceBoundingBox","type":"Collection(Edm.ComplexType)","fields":[
+            {"name":"x","type":"Edm.Int32","searchable":false,"filterable":false,"facetable":false},
+            {"name":"y","type":"Edm.Int32","searchable":false,"filterable":false,"facetable":false}
+        ]}
+     ]},
+    {"name":"tags","type":"Collection(Edm.ComplexType)","fields":[
+        {"name":"name","type":"Edm.String","searchable":true,"filterable":false,"facetable":false},
+        {"name":"confidence","type":"Edm.Double","searchable":false,"filterable":false,"facetable":false}
+    ]},
+    {"name":"needsModeration","type":"Edm.Boolean","searchable":false,"sortable":false,"filterable":true,"facetable":false}
+]}

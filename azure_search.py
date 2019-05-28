@@ -13,6 +13,7 @@ class AzureSearchConfig:
             search_api_version,
             cognitive_services_key,
             storage_connection_string,
+            custom_skill_url,
             datasource,
             index,
             skillset,
@@ -24,6 +25,7 @@ class AzureSearchConfig:
         self.search_api_version = search_api_version
         self.cognitive_services_key = cognitive_services_key
         self.storage_connection_string = storage_connection_string
+        self.custom_skill_url = custom_skill_url
         self.datasource = datasource
         self.index = index
         self.skillset = skillset
@@ -94,9 +96,19 @@ class AzureSearchClient:
         if 'knowledgeStore' in body:
             body['knowledgeStore']['storageConnectionString'] = \
                 self.config.storage_connection_string
+        if self.debug:
+            print(f"Number of Skills: {len(body['skills'])}")
+        index = 0
+        for sk in body['skills']:
+            if self.debug:
+                print(f'current skill: {sk}')
+                print(f"current skill in body: {body['skills'][index]}")
+            if sk['@odata.type'] == "#Microsoft.Skills.Custom.WebApiSkill":
+                body['skills'][index]['uri'] = self.config.custom_skill_url
+            index+=1
 
         if self.debug:
-            print(body)
+            print(f"body to be deployed: {body}")
         url = self.config.base_url + f"skillsets/{self.config.skillset}"
         req = requests.put(
             url, headers=self.base_headers,

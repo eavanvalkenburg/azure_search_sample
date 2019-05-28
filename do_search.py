@@ -9,7 +9,7 @@ def file_reader(filename) -> dict:
 files = file_reader('bootcamp/files.json')
 search_client = AzureSearchClient(
         AzureSearchConfig(
-                **file_reader('bootcamp/search_config.json')))
+                **file_reader('bootcamp/search_config.json')), debug=False)
 
 #%%
 datasource = file_reader(files['datasource_file'])
@@ -35,3 +35,6 @@ search_client.query("satya")
 
 #%%
 search_client.query("microsoft&&searchFields=organizations")
+
+#%%
+search_client.query("search=satya&$select=blob_uri,faces,categories")

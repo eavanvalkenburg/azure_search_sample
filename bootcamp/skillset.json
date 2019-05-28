@@ -9,7 +9,8 @@
             "visualFeatures": [
                 "Tags",
                 "Categories",
-                "Description"
+                "Description",
+                "Faces"
             ],
             "inputs": [
                 {
@@ -19,16 +20,16 @@
             ],
             "outputs": [
                 {
-                    "name": "categories",
-                    "targetName": "myCategories"
+                    "name": "categories"
                 },
                 {
-                    "name": "tags",
-                    "targetName": "myTags"
+                    "name": "tags"
                 },
                 {
-                    "name": "description",
-                    "targetName": "myDescription"
+                    "name": "description"
+                },
+                {
+                    "name": "faces"
                 }
             ]
         },
@@ -153,6 +154,25 @@
                     "targetName": "organizations"
                 }
             ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Custom.WebApiSkill",
+            "description": "Moderator custom skill",
+            "uri": "https://[your-function-urll].azurewebsites.net/api/ContentModerator?code=[your-content-moderator-api-key]",
+            "batchSize":1,
+            "context": "/document",
+            "inputs": [
+              {
+                "name": "text",
+                "source": "/document/mergedText"
+              }
+            ],
+            "outputs": [
+              {
+                "name": "text",
+                "targetName": "needsModeration"
+              }
+            ]
         }
     ],
     "cognitiveServices": {
@@ -168,7 +188,7 @@
                 "objects": [
                     {
                         "storageContainer": "bootcamp-ks",
-                        "source": "/document/normalized_images/*/myDescription"
+                        "source": "/document/*"
                     }
                 ]
             }
