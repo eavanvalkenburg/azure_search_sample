@@ -21,7 +21,7 @@ search_client.create_index(index)
 
 #%%
 skillset = file_reader(files['skillset_file'])
-search_client.create_skillset(skillset)
+search_client.create_skillset(skillset, debug=True)
 
 #%%
 indexer = file_reader(files['indexer_file'])

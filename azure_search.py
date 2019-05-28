@@ -53,24 +53,24 @@ class AzureSearchClient:
             "api-key": self.config.search_api_key,
             "Content-Type": "application/json"}
 
-    def create_datasource(self, body, **kwargs):
+    def create_datasource(self, body, debug=False, **kwargs):
         """Create a datasource in the search service."""
         body['credentials']['connectionString'] = \
             self.config.storage_connection_string
         body['name'] = self.config.datasource
 
-        if self.debug:
+        if self.debug or debug:
             print(body)
         url = self.config.base_url + f"datasources/{self.config.datasource}"
         req = requests.put(
             url, headers=self.base_headers,
             json=body, params=self.base_payload,
             **kwargs)
-        if self.debug:
+        if self.debug or debug:
             print(req.text)
         req.raise_for_status()
 
-    def create_index(self, body, **kwargs):
+    def create_index(self, body, debug=False, **kwargs):
         """Create a index in the search service."""
         body['name'] = self.config.index
         # try delete
@@ -78,16 +78,16 @@ class AzureSearchClient:
         delete = requests.delete(
             url, headers=self.base_headers,
             params=self.base_payload, **kwargs)
-        if self.debug:
+        if self.debug or debug:
             print(delete.status_code)
         req = requests.put(
             url, headers=self.base_headers,
             json=body, params=self.base_payload, **kwargs)
-        if self.debug:
+        if self.debug or debug or req.status_code == 400:
             print(req.text)
         req.raise_for_status()
 
-    def create_skillset(self, body, **kwargs):
+    def create_skillset(self, body, debug=False, **kwargs):
         """Create a skillset in the search service."""
         body['name'] = self.config.skillset
         if 'cognitiveServices' in body:
@@ -96,28 +96,27 @@ class AzureSearchClient:
         if 'knowledgeStore' in body:
             body['knowledgeStore']['storageConnectionString'] = \
                 self.config.storage_connection_string
-        if self.debug:
-            print(f"Number of Skills: {len(body['skills'])}")
-        index = 0
-        for sk in body['skills']:
-            if self.debug:
-                print(f'current skill: {sk}')
-                print(f"current skill in body: {body['skills'][index]}")
-            if sk['@odata.type'] == "#Microsoft.Skills.Custom.WebApiSkill":
-                body['skills'][index]['uri'] = self.config.custom_skill_url
-            index+=1
 
-        if self.debug:
+        def replace_uri(skill, url): 
+            if 'uri' in skill:
+                skill['uri'] = url
+            return skill
+
+        body['skills'] = [replace_uri(s, self.config.custom_skill_url) for s in body['skills']]
+        if self.debug or debug:
+            print(f"Skills: {body['skills']}")
+
+        if self.debug or debug:
             print(f"body to be deployed: {body}")
         url = self.config.base_url + f"skillsets/{self.config.skillset}"
         req = requests.put(
             url, headers=self.base_headers,
             json=body, params=self.base_payload,  **kwargs)
-        if self.debug:
+        if self.debug or debug or req.status_code == 400:
             print(req.text)
         req.raise_for_status()
 
-    def create_indexer(self, body, **kwargs):
+    def create_indexer(self, body, debug=False, **kwargs):
         """Create a indexer in the search service."""
         body['name'] = self.config.indexer
         body['dataSourceName'] = self.config.datasource
@@ -128,11 +127,11 @@ class AzureSearchClient:
         req = requests.put(
             url, headers=self.base_headers,
             json=body, params=self.base_payload, **kwargs)
-        if self.debug:
+        if self.debug or debug or req.status_code == 400:
             print(req.text)
         req.raise_for_status()
 
-    def reset_run(self, reset=True, run=True, wait=False, **kwargs):
+    def reset_run(self, reset=True, run=True, wait=False, debug=False, **kwargs):
         """Reset and run the indexer."""
         if reset:
             reset_url = self.config.base_url \
@@ -148,6 +147,8 @@ class AzureSearchClient:
                 run_url, headers=self.base_headers,
                 params=self.base_payload, **kwargs)
             run.raise_for_status()
+            if self.debug or debug or run.status_code == 400:
+                print(run.text)
         status_url = self.config.base_url \
             + f"indexers/{self.config.indexer}/status"
         status = requests.get(
@@ -157,7 +158,7 @@ class AzureSearchClient:
         out = status.json()
         state = out.get('lastResult').get('status')
         print(state)
-        if self.debug:
+        if self.debug or debug:
             print(out)
         if wait:
             while state == 'inProgress' or state == "reset":
@@ -165,6 +166,8 @@ class AzureSearchClient:
                 status = requests.get(
                     status_url, headers=self.base_headers,
                     params=self.base_payload, **kwargs)
+                if self.debug or debug or status.status_code == 400:
+                    print(status.text)
                 status.raise_for_status()
                 out = status.json()
                 state = out.get('lastResult').get('status')
@@ -178,5 +181,7 @@ class AzureSearchClient:
         query = requests.get(
             query_url, headers=self.base_headers,
             params=payload, **kwargs)
+        if query.status_code == 400:
+            print(query.text)
         query.raise_for_status()
         return query.json()
