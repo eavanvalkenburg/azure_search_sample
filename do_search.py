@@ -37,4 +37,4 @@ search_client.query("satya")
 search_client.query("microsoft&&searchFields=organizations")
 
 #%%
-search_client.query("search=satya&$select=blob_uri,faces,categories")
+search_client.query("search=satya&$select=blob_uri,faces,categories,tags,description")
