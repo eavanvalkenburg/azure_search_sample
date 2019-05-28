@@ -159,19 +159,69 @@
             "@odata.type": "#Microsoft.Skills.Custom.WebApiSkill",
             "description": "Moderator custom skill",
             "uri": "https://[your-function-urll].azurewebsites.net/api/ContentModerator?code=[your-content-moderator-api-key]",
-            "batchSize":1,
+            "batchSize": 1,
             "context": "/document",
             "inputs": [
-              {
-                "name": "text",
-                "source": "/document/mergedText"
-              }
+                {
+                    "name": "text",
+                    "source": "/document/mergedText"
+                }
             ],
             "outputs": [
-              {
-                "name": "text",
-                "targetName": "needsModeration"
-              }
+                {
+                    "name": "text",
+                    "targetName": "needsModeration"
+                }
+            ]
+        },
+        {
+            "@odata.type": "#Microsoft.Skills.Util.ShaperSkill",
+            "name": "DocFull",
+            "description": null,
+            "context": "/document",
+            "inputs": [
+                {
+                    "name": "Id",
+                    "source": "/document/metadata_storage_path"
+                },
+                {
+                    "name": "Text",
+                    "source": "/document/mergedText"
+                },
+                {
+                    "name": "needsModeration",
+                    "source": "/document/needsModeration"
+                },
+                {
+                    "name": "keyPhrases",
+                    "source": "/document/pages/*/keyPhrases/*"
+                },
+                {
+                    "name": "organizations",
+                    "source": "/document/pages/*/organizations/*"
+                },
+                {
+                    "name": "categories",
+                    "source": "/document/normalized_images/*/categories/*"
+                },
+                {
+                    "name": "tags",
+                    "source": "/document/normalized_images/*/tags/*"
+                },
+                {
+                    "name": "description",
+                    "source": "/document/normalized_images/*/description"
+                },
+                {
+                    "name": "faces",
+                    "source": "/document/normalized_images/*/faces/*"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "output",
+                    "targetName": "DocFull"
+                }
             ]
         }
     ],
@@ -187,8 +237,8 @@
                 "tables": [],
                 "objects": [
                     {
-                        "storageContainer": "bootcamp-ks",
-                        "source": "/document/*"
+                        "storageContainer": "bootcampks",
+                        "source": "/document/DocFull"
                     }
                 ]
             }
