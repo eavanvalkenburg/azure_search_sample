@@ -1,0 +1,19 @@
+{
+    "name": "cosmosdb-indexer",
+    "description": "",
+    "dataSourceName": "cosmos",
+    "skillsetName": null,
+    "targetIndexName": "cosmosdb-index",
+    "disabled": null,
+    "schedule": null,
+    "parameters": {
+      "batchSize": null,
+      "maxFailedItems": 0,
+      "maxFailedItemsPerBatch": 0,
+      "base64EncodeKeys": false,
+      "configuration": {}
+    },
+    "fieldMappings": [],
+    "outputFieldMappings": [],
+    "cache": null
+  }

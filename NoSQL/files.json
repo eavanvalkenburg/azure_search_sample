@@ -1,0 +1,6 @@
+{
+    "datasource_file": "NoSQL/datasource.json",
+    "index_file": "NoSQL/index.json",
+    "skillset_file": "NoSQL/skillset.json",
+    "indexer_file": "NoSQL/indexer.json"
+}

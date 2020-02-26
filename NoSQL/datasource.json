@@ -1,0 +1,17 @@
+{
+    "name": "cosmos",
+    "description": null,
+    "type": "cosmosdb",
+    "subtype": null,
+    "credentials": {
+        "connectionString": ""
+    },
+    "container": {
+        "name": "items4",
+        "query": null
+    },
+    "dataChangeDetectionPolicy": {
+        "@odata.type": "#Microsoft.Azure.Search.HighWaterMarkChangeDetectionPolicy",
+        "highWaterMarkColumnName": "_ts"
+    }
+}

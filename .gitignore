@@ -4,3 +4,4 @@ __pycache__/
 .vscode
 *config.json
 +sample_config.json
+/customers/*
